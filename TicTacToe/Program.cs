@@ -7,415 +7,96 @@ using System.Threading.Tasks;
 namespace TicTacToe
 {
     class Program
-     {
-        static string[] pos = new string[10] { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" }; //positions on board
-
-         static void DrawBoard() //draws board
-         {
-            Console.WriteLine();
-            Console.WriteLine("    -*-TIC-*-TAC-*-TOE-*-");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine("         |        |");
-            Console.WriteLine("      {0}  |    {1}   |   {2}  ", pos[1], pos[2], pos[3]);
-            Console.WriteLine("         |        |");
-            Console.WriteLine("  ------------------------");
-            Console.WriteLine("         |        |");
-            Console.WriteLine("      {0}  |    {1}   |   {2}  ", pos[4], pos[5], pos[6]);
-            Console.WriteLine("         |        |");
-            Console.WriteLine("  ------------------------");
-            Console.WriteLine("         |        |");
-            Console.WriteLine("      {0}  |    {1}   |   {2}  ", pos[7], pos[8], pos[9]);
-            Console.WriteLine("         |        |");
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
-        }
-
-        private static bool WinLine (int index0, int index1, int index2, string player) //method to get winning combinations
-        {
-            return pos[index0] == player && pos[index1] == player && pos[index2] == player;
-        }
-
-        static bool CheckWin() //checks for a winner using WinLine
-        {
-            if (WinLine(1, 2, 3, "X")) //X wins horizontally
-            {
-                //pos[1] = " ";
-                //pos[2] = " ";
-                //pos[3] = " ";
-                pos[4] = " ";
-                pos[5] = " ";
-                pos[6] = " ";
-                pos[7] = " ";
-                pos[8] = " ";
-                pos[9] = " ";
-                return true;
-            }
-            if (WinLine(4, 5, 6, "X"))
-            {
-                pos[1] = " ";
-                pos[2] = " ";
-                pos[3] = " ";
-                //pos[4] = " ";
-                //pos[5] = " ";
-                //pos[6] = " ";
-                pos[7] = " ";
-                pos[8] = " ";
-                pos[9] = " ";
-                return true;
-            }
-            if (WinLine(7, 8, 9, "X"))
-            {
-                pos[1] = " ";
-                pos[2] = " ";
-                pos[3] = " ";
-                pos[4] = " ";
-                pos[5] = " ";
-                pos[6] = " ";
-                //pos[7] = " ";
-                //pos[8] = " ";
-                //pos[9] = " ";
-                return true;
-            }
-            if (WinLine(1, 4, 7, "X")) //X wins vertically
-            {
-                //pos[1] = " ";
-                pos[2] = " ";
-                pos[3] = " ";
-                //pos[4] = " ";
-                pos[5] = " ";
-                pos[6] = " ";
-                //pos[7] = " ";
-                pos[8] = " ";
-                pos[9] = " ";
-                return true;
-            }
-            if (WinLine(2, 5, 8, "X"))
-            {
-                pos[1] = " ";
-                //pos[2] = " ";
-                pos[3] = " ";
-                pos[4] = " ";
-                //pos[5] = " ";
-                pos[6] = " ";
-                pos[7] = " ";
-                //pos[8] = " ";
-                pos[9] = " ";
-                return true;
-            }
-            if (WinLine(3, 6, 9, "X"))
-            {
-                pos[1] = " ";
-                pos[2] = " ";
-                //pos[3] = " ";
-                pos[4] = " ";
-                pos[5] = " ";
-                //pos[6] = " ";
-                pos[7] = " ";
-                pos[8] = " ";
-                //pos[9] = " ";
-                return true;
-            }
-            if (WinLine(1, 5, 9, "X")) //X wins diagonally
-            {
-                //pos[1] = " ";
-                pos[2] = " ";
-                pos[3] = " ";
-                pos[4] = " ";
-                //pos[5] = " ";
-                pos[6] = " ";
-                pos[7] = " ";
-                pos[8] = " ";
-                //pos[9] = " ";
-                return true;
-            }
-            if (WinLine(3, 5, 7, "X"))
-            {
-                pos[1] = " ";
-                pos[2] = " ";
-                //pos[3] = " ";
-                pos[4] = " ";
-                //pos[5] = " ";
-                pos[6] = " ";
-                //pos[7] = " ";
-                pos[8] = " ";
-                pos[9] = " ";
-                return true;
-            }
-            if (WinLine(1, 2, 3, "O")) //O wins horizontally
-            {
-                //pos[1] = " ";
-                //pos[2] = " ";
-                //pos[3] = " ";
-                pos[4] = " ";
-                pos[5] = " ";
-                pos[6] = " ";
-                pos[7] = " ";
-                pos[8] = " ";
-                pos[9] = " ";
-                return true;
-            }
-            if (WinLine(4, 5, 6, "O"))
-            {
-                pos[1] = " ";
-                pos[2] = " ";
-                pos[3] = " ";
-                //pos[4] = " ";
-                //pos[5] = " ";
-                //pos[6] = " ";
-                pos[7] = " ";
-                pos[8] = " ";
-                pos[9] = " ";
-                return true;
-            }
-            if (WinLine(7, 8, 9, "O"))
-            {
-                pos[1] = " ";
-                pos[2] = " ";
-                pos[3] = " ";
-                pos[4] = " ";
-                pos[5] = " ";
-                pos[6] = " ";
-                //pos[7] = " ";
-                //pos[8] = " ";
-                //pos[9] = " ";
-                return true;
-            }
-            if (WinLine(1, 4, 7, "O")) //O wins vertically
-            {
-                //pos[1] = " ";
-                pos[2] = " ";
-                pos[3] = " ";
-                //pos[4] = " ";
-                pos[5] = " ";
-                pos[6] = " ";
-                //pos[7] = " ";
-                pos[8] = " ";
-                pos[9] = " ";
-                return true;
-            }
-            if (WinLine(2, 5, 8, "O"))
-            {
-                pos[1] = " ";
-                //pos[2] = " ";
-                pos[3] = " ";
-                pos[4] = " ";
-                //pos[5] = " ";
-                pos[6] = " ";
-                pos[7] = " ";
-                //pos[8] = " ";
-                pos[9] = " ";
-                return true;
-            }
-            if (WinLine(3, 6, 9, "O"))
-            {
-                pos[1] = " ";
-                pos[2] = " ";
-                //pos[3] = " ";
-                pos[4] = " ";
-                pos[5] = " ";
-                //pos[6] = " ";
-                pos[7] = " ";
-                pos[8] = " ";
-                //pos[9] = " ";
-                return true;
-            }
-            if (WinLine(1, 5, 9, "O")) //O wins diagonally
-            {
-                //pos[1] = " ";
-                pos[2] = " ";
-                pos[3] = " ";
-                pos[4] = " ";
-                //pos[5] = " ";
-                pos[6] = " ";
-                pos[7] = " ";
-                pos[8] = " ";
-                //pos[9] = " ";
-                return true;
-            }
-            if (WinLine(3, 5, 7, "O"))
-            {
-                pos[1] = " ";
-                pos[2] = " ";
-                //pos[3] = " ";
-                pos[4] = " ";
-                //pos[5] = " ";
-                pos[6] = " ";
-                //pos[7] = " ";
-                pos[8] = " ";
-                pos[9] = " ";
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
+    {
          static void Main()
          {
-            StartGame: //restart from end of Main
-            
-            /* variable declaration:
-             * choice: selects where on board
-             * turn: toggles between x and o
-             * num: counts number of turns
-            */
-
-            int choice = 0, turn = 1, num = 1;
-            bool winFlag = false, playing = true;
-
-            DrawBoard(); //show players board
-
-            //game loop
-            while (playing == true)
+            while (true)
             {
-               
+                var winningPlayer = -1; //-1 null, 0 tie, 1 player 1 (X), 2 player 2 (O)
+                var totalTurns = 0;
+                var isGameOver = false;
+                var board = new Board();
 
-                while (winFlag == false)
+                while (!isGameOver)
                 {
-
+                    var currentPlayersTurn = ((totalTurns + 1) % 2) != 0 ? 1 : 2;  //ternary statements (cond ? if true : if false)/modulus operator (remainder from division)
+                    var isCurrentPlayersTurn = true;
+                    var validMove = false;
                     
-                    //player O turn
-                    if (turn == 1 && num < 10)
+                    while (isCurrentPlayersTurn)
                     {
+                        board.DrawBoard();
 
-                        Console.WriteLine("Player O's turn. Pick a number");
-                        choice = int.Parse(Console.ReadLine());
+                        Console.WriteLine($"Player {currentPlayersTurn}'s turn. Pick a number:"); //player 1 is X
 
-                        if (choice > 0 && choice < 10)
+                        var entry = Console.ReadLine();
+
+                        Console.WriteLine("You entered: " + entry);
+
+                        if (int.TryParse(entry, out var intChoice))
                         {
-                            if (pos[choice] != "X" && pos[choice] != "O")
+                            if (intChoice > 0 && intChoice < 10)
                             {
-                                pos[choice] = "O";
-                                winFlag = CheckWin();
-                                Console.Clear();
-                                DrawBoard();
-                                num++;
+                                var statusOfBoardAtChoice = board.Position.GetChoiceAtPosition(intChoice);
 
-                                if (winFlag == false)
+                                if (statusOfBoardAtChoice.ToLower() != "x" && statusOfBoardAtChoice.ToLower() != "o")
                                 {
-                                    turn = 2;
-                                }
-
-                                else
-                                {
-                                    playing = false;
+                                    board.Position.SetChoiceAtPosition(intChoice, currentPlayersTurn == 1);
+                                    
+                                    validMove = true;
                                 }
                             }
-
-                            else
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Spot taken. Enter Again");
-                                DrawBoard();
-                            }
-
                         }
-
-                        else
+                        
+                        if (!validMove)
                         {
-                            Console.Clear();
-                            Console.WriteLine("Incorrect Entry. Enter a number 1 - 9.");
-                            DrawBoard();
-                        }
-                    }
-
-                    //player X turn
-                    else if (turn == 2 && num < 10)
-                    {
-                        Console.WriteLine("Player X's turn. Pick a number");
-                        choice = int.Parse(Console.ReadLine());
-
-                        if (choice > 0 && choice < 10)
-                        {
-                            if (pos[choice] != "X" && pos[choice] != "O")
-                            {
-                                pos[choice] = "X";
-                                winFlag = CheckWin();
-                                Console.Clear();
-                                DrawBoard();
-                                num++;
-
-                                if (winFlag == false)
-                                {
-                                    turn = 1;
-                                }
-
-                                else
-                                {
-                                    playing = false;
-                                }
-                            }
-
-                            else
-                            {
-                                Console.Clear();
-                                Console.WriteLine("Spot taken. Enter Again");
-                                DrawBoard();
-                            }
-
+                            Console.WriteLine("Incorrect Entry. Enter a number 1 - 9 in a square that has not been selected.");
                         }
                         else
                         {
-                            Console.Clear();
-                            Console.WriteLine("Incorrect Entry. Enter a number.");
-                            DrawBoard();
+                            totalTurns++;
+
+                            isCurrentPlayersTurn = false;
+                            
+                            var endGameCheck = board.CheckIfWinningBoard(currentPlayersTurn == 1);
+
+                            if (endGameCheck.HasValue)
+                            {
+                                winningPlayer = endGameCheck.Value;
+                            }
+                            else if (totalTurns == 9)
+                            {
+                                winningPlayer = 0;
+                            }
+
+                            if (winningPlayer > -1)
+                            {
+                                isGameOver = true;
+                            }
                         }
-                    }
 
-                    else //on 10th turn with no winner
-                    {
-                        playing = false;
-                        goto EndGame;
+                        Console.Clear();
                     }
                 }
-            }
 
-            EndGame:
+                board.DrawBoard();
 
-            if (winFlag == true)
-            {
-                if (turn == 1)
+                if (winningPlayer == 0)
                 {
-                    Console.WriteLine("Player O wins!!");
+                    Console.WriteLine("Tie game!");
+                }
+                else if (winningPlayer == 1)
+                {
+                    Console.WriteLine("Player 1 (X) wins!!");
+                }
+                else if (winningPlayer == 2)
+                {
+                    Console.WriteLine("Player 2 (O) wins!!");
                 }
 
-                else
-                {
-                    Console.WriteLine("Player X wins!!");
-                }
-            }
-
-            if (winFlag == false)
-            {
-                Console.WriteLine("Tie game!");
-            }
-
-            Console.WriteLine("Play again? Y for Yes. Any other key will exit.");
-            string key = Console.ReadLine();
-
-            if (key == "y" || key == "Y") //restarts game
-            {
-                pos[1] = "1";
-                pos[2] = "2";
-                pos[3] = "3";
-                pos[4] = "4";
-                pos[5] = "5";
-                pos[6] = "6";
-                pos[7] = "7";
-                pos[8] = "8";
-                pos[9] = "9";
+                Console.WriteLine("Press any key to play again. Press ctrl-c to exit");
+                Console.ReadLine();
                 Console.Clear();
-                goto StartGame;
-            }
-
-            else //quits app
-            {
-                return;
-
             }
         }
      }
