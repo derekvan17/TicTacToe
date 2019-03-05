@@ -33,7 +33,9 @@ namespace TicTacToe
 
                         Console.WriteLine("You entered: " + entry);
 
-                        if (int.TryParse(entry, out var intChoice))
+                        int intChoice;
+
+                        if (int.TryParse(entry, out intChoice))
                         {
                             if (intChoice > 0 && intChoice < 10)
                             {
@@ -94,7 +96,7 @@ namespace TicTacToe
                     Console.WriteLine("Player 2 (O) wins!!");
                 }
 
-                Console.WriteLine("Press any key to play again. Press ctrl-c to exit");
+                Console.WriteLine("Press any key to play again. Press ctrl-c to exit.");
                 Console.ReadLine();
                 Console.Clear();
             }

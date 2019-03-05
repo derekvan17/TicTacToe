@@ -22,7 +22,10 @@ namespace TicTacToe
              new Tuple<int, int, int>(3,5,7)
         };
 
-        public Board() => Position = new BoardPosition();
+        public Board()
+        {
+            Position = new BoardPosition();
+        }
 
         public void DrawBoard()
         {
